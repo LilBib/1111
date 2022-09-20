@@ -19,7 +19,7 @@ router.post(
       image: Joi.string().required().pattern(URLregex, 'link'),
       trailer: Joi.string().required().pattern(URLregex, 'link'),
       thumbnail: Joi.string().required().pattern(URLregex, 'link'),
-      movieId: Joi.number().required(),
+      movieId: Joi.number().required().pattern(/\d+/, 'movieId'),
     }),
   }),
   createMovie,
