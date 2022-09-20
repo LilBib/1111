@@ -10,7 +10,6 @@ const { errorsHandler } = require('./middlewares/errorsHandler');
 const { createUser, login } = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
-const limiter = require('./utils/limiter');
 
 const { PORT = 3000, NODE_ENV, MONGODB_URI } = process.env;
 
@@ -18,7 +17,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(limiter);
 
 mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true, /* ,
