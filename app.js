@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(limiter);
 
-mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : require('./configuration').dbSource, {
+mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true, /* ,
   useCreateIndex: true,
   useFindAndModify: false */
