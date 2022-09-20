@@ -13,7 +13,7 @@ module.exports.createMovie = (req, res, next) => {
   Movie.create({
     ...req.body, owner: req.user._id,
   })
-    .then((movie) => res.send({ data: movie }))
+    .then((movie) => res.send({ movie }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new ValidationError('Переданы некорректные данные при добавлении фильма'));
