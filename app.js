@@ -16,6 +16,8 @@ const { PORT = 3000, NODE_ENV, MONGODB_URI } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
+app.options('*', cors());
+app.use(cors());
 app.use(helmet());
 
 mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:27017/moviesdb', {
@@ -25,8 +27,6 @@ mongoose.connect(NODE_ENV === 'production' ? MONGODB_URI : 'mongodb://localhost:
 })
   .catch(errorsHandler);
 
-app.options('*', cors());
-app.use(cors());
 app.use(requestLogger);
 app.post(
   '/signin',
